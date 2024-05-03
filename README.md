@@ -1,8 +1,59 @@
 # 리액트 컴포넌트
 
+## 1.0. 컴포넌트를 왜 생성하는가?
+
+- 프로젝트 규모에 따라 협업이 필요로 함.
+- 기능별로 html, css, js 가 별도로 관리 필요.
+
 ## 1.1. 컴포넌트에 배치되는 내용
 
-- JSX 가 배치된다. (리액트용 HTML 태그)
+- JSX 가 배치된다. (리액트용 HTML 태그 class => className)
+- css 가 배치된다. ( background: url(경로문제) )
+- js 를 배치된다.
+
+## 1.2. 이미지를 배치하는 2가지 경우(주의사항)
+
+- 태그에 이미지를 배치한 경우
+  : public/images 폴더를 참조합니다.
+
+```html
+<img src="./images/etc/logo-kakao.png" />
+```
+
+- css 배경으로 이미지를 배치한 경우
+  : src/images 폴더를 참조합니다.
+  : css 파일을 js 컴포넌트에서 사용하면 webpack 이 압축한다.
+
+```css
+background: url("../images/icon/icon-search.png");
+```
+
+## 1.3. js를 React 로 마이그레이션 진행
+
+### 1.3.1. load 가 useEffect 로 변경
+
+```js
+window.addEventListener("load", function () {});
+
+useEffect(() => {
+  return () => {};
+}, []);
+```
+
+### 1.3.2. querySelector 가 useRef(null) 로 변경
+
+```js
+const tag = document.querySelector(".bt");
+
+const tag = useRef(null);
+
+useEffect(() => {
+  // tag.current 로 접근
+  return () => {};
+}, []);
+
+<div ref={tag}> </div>;
+```
 
 # JS 14 장
 
@@ -25,3 +76,38 @@
   private   : 외부에서 절대로 사용할 수 없다.
   protected : 허용한 대상만 사용할 수 있다.
 ```
+
+# JS 15장
+
+```txt
+ var 는 없다 생각해요.
+ 변수 를 만들때 고민이 생겨요.
+
+ const 변수이름  :  값을 고정시키겠다.
+ let 변수이름    : 값이 수시로 바뀌어집니다.
+
+const 사용하실 때 오해의 소지가 있는 경우
+
+ 정군은 const 는 절대로 값이 안변한다.
+ 값을 변경하려고 하면 에러난다.
+ const age = 15;
+ age = 100; // 에러.. conatant value...
+
+
+ const 객체 = {}   오해의 소지가 발생합니다.
+
+ const 정군 = {} // 이미 주소는 고정이 되어 버렸다.
+ 정군 = "안녕"   //  주소를 교체 하려고 했다. 그래서 const 에 위배된다. 에러
+
+ // 주소를 교체하는 것이 아니고, 안쪽의 연결된 내용을 수정한다.
+
+ 정군.age = 100;
+ 정군["nicName"] = "hong guil dong";
+```
+
+# 실 업무에서 알아야 하는 상식
+n
+- nvm (Node Version Manger) 설치 및 활용
+  : https://github.com/coreybutler/nvm-windows/releases
+- npm 보다는 yarn 선호
+- favicon 만들기(디자이너 담당)
